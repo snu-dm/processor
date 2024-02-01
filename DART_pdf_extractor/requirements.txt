@@ -1,0 +1,8 @@
+pdfplumber
+sqlalchemy
+psycopg2
+pyarrow
+fastparquet
+pandas
+minio
+tqdm
