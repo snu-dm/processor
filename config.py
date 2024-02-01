@@ -1,0 +1,7 @@
+dialect = 'postgresql'
+host = '147.46.199.118'
+port = '64372'
+user = ''
+pw = ''
+db = 'nrf'
+minio_api_endpoint = '147.46.94.166:9000'
