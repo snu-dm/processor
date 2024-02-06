@@ -4,12 +4,14 @@ import config
 from schemas import sec
 from minio import Minio
 from minio.error import S3Error
+import psycopg2
+import io
 
 # --------------------------------------------------------Database Setting--------------------------------------------------------
 # Create Engine
 
 engine = create_engine(f'postgresql://{config.user}:{config.pw}@{config.host}:{config.port}/{config.db}')
-client = Minio(config.minio_api_endpoint, access_key=config.user, secret_key=config.pw, secure=False)
+client = Minio(config.minio_api_endpoint, access_key=config.user, secret_key=config.user, secure=False)
 
 def get_insert_query(ticker, year, filing_type, item_type, document_date):
     insert_query = insert(sec).values(
@@ -41,14 +43,20 @@ def upload(data_to_upload, ticker, year, filing_type, item_type, document_date, 
                 insert_query = get_insert_query(ticker, year, filing_type, item_type, document_date)
                 con.execute(insert_query)
 
+                #preprocessing for upload
+                data_to_upload_bytes = data_to_upload.encode('utf-8')
+                data_stream = io.BytesIO(data_to_upload_bytes)
+
                 # S3 (MINIO)
                 client.put_object(
-                    bucket_name, minio_object_name, data_to_upload, len(data_to_upload)
+                    bucket_name, minio_object_name, data_stream, len(data_to_upload_bytes)
                 )
                 transactions.commit()
+                print(f"success to upload {ticker}-{year}!!!")
 
-            except:
+            except Exception as e:
                 print('Failed to INSERT data: {}/{}'.format(ticker, year))
+                print(f"e: {e}")
                 transactions.rollback()
     
 
