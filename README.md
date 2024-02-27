@@ -1,4 +1,10 @@
-# Overview
+# Overview
+* SEC, DART의 기업 보고서들을 추출하여 저장하는 프로젝트
+* 추출한 뒤 메타데이터들은 postgresql 서버, 전처리된 실제보고서는 minio 서버에 적재
+* Processor 폴더안에 존재하는 .py 파일 하나로 sec, dart를 모두 수집/전처리 할 수 있어야 프로젝트 완성
+* 현재 SEC의 경우 SEC_scraper폴더 안의 main.py를 통해 데이터 추출, 전처리, 적재 진행
+* 현재 DART의 경우 DART_scraper폴더 안의 dart_crawler.py로 보고서 pdf 다운로드 링크 추출,
+DART_PDF_extractor폴더 안의 main.py로 전처리 및 적재
 
 # Usage-공통
 1. Requirements 설치
