@@ -17,7 +17,8 @@ pip install -r requirements.txt
 2. config.py에 정보 입력 (for SNU BDAI members)
 
 # SEC
-main.py를 동작시켜 필요한 보고서들의 pdf 다운로드 링크가 포함된 csv파일을 생성하는 구조.
+
+main.py를 동작시켜 필요한 보고서들의 pdf 다운로드 링크가 포함된 csv파일을 생성하는 구조.
 
 이때 S&P500(필요에 따라 다른 기업 리스트의 csv파일) 기업의 ticker와 cik가 포함된 sp500.csv 파일을 필요로 함.
 
