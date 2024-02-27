@@ -22,9 +22,11 @@ pip install -r requirements.txt
 이때 S&P500(필요에 따라 다른 기업 리스트의 csv파일) 기업의 ticker와 cik가 포함된 sp500.csv 파일을 필요로 함.
 
 * input
+  
 없음(추후 다운받을 기업 목록 csv 파일이 되도록 수정)
 
 * output
+  
 전처리 완료된 기업 보고서(.txt)
 
 ```bash
@@ -39,9 +41,11 @@ python main.py
 
 
 * input
+  
 없음(추후 다운받을 기업 목록 csv 파일이 되도록 수정)
 
 * output
+  
 필요한 보고서들의 pdf 다운로드 링크가 포함된 csv파일(.csv)
 
 ```bash
