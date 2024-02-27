@@ -62,7 +62,7 @@ def parse_single(file_txt):
     prev = ('', '')
 
     try:
-        soup = BeautifulSoup(file_txt.read(), 'lxml')
+        soup = BeautifulSoup(file_txt, 'lxml')
         text = unidecode.unidecode(soup.get_text('\n'))
 
         od = OrderedDict()
@@ -71,8 +71,8 @@ def parse_single(file_txt):
         date_pattern = re.compile(r'\bFILED AS OF DATE:\s*(\d{8})\b', re.IGNORECASE)
         filename_pattern = re.compile(r'\S+\.htm')
         date_val = int(date_pattern.findall(text)[0])
-        filename_val = filename_pattern.search(text)[0][:-4]
-        print(date_val, filename_val)
+        # filename_val = filename_pattern.search(text)[0][:-4]
+        # print(date_val, filename_val)
 
         for tag in soup.find_all('span'):
             
@@ -102,16 +102,15 @@ def parse_single(file_txt):
 
         #document = json.dumps(od, indent=8)
         
-        # Saving the log - for experiments, need change when saving to database
-        current_time = datetime.now().time()
-        
-        file_name = f"log_parser2_0205_{current_time}.txt"
-        with open(file_name, 'w') as log:
-            log.write(dic_concac(od))
+        # file_name = f"log_parser2_0205_{current_time}.txt"
+        #with open(file_name, 'w') as log:
+            #log.write(dic_concac(od))
 
         r_doc = dic_concac(od)
-
-        return(r_doc, filename_val, date_val) # parsed data, file name(ex: abbv-20191231), file date(ex: 20200221)
+        #print(json.dumps(od, indent=8))
+        print(f"data_to_upload: {r_doc}")
+        print(f"date_val: {date_val}")
+        return(r_doc, date_val) # parsed data, file name(ex: abbv-20191231), file date(ex: 20200221)
 
     except Exception as e:
         print("error : %s" % (e))

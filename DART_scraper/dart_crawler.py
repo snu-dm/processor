@@ -24,7 +24,7 @@ DOWNLOAD_URL = 'kind.krx.co.kr/corpgeneral/corpList.do'
 api_key = 'a7b222155e0ad5b1ed9de6838174eb585a7db8c9'
 request_url = 'https://opendart.fss.or.kr/api/corpCode.xml?crtfc_key='
 
-current_path = '/home/5yoondori/bdai_dart/DART_scraper/'
+current_path = '/home/5yoondori/bdai_processor/processor/DART_scraper'
 
 # DART에서 stock codes 및 company names 다운로드
 def download_stock_codes(market=None, delisted=False):
@@ -268,4 +268,4 @@ print(f"최신 공시보고서 추출에 실패한 횟수: {len(rogue_corps)}") 
 
 getDocumentNumber(latest_disclosures)
 getDownloadLink(latest_disclosures)
-latest_disclosures.to_csv(current_path + 'latest_disclosures_240122.csv',index=False, encoding='utf8')
+latest_disclosures.to_csv(current_path + 'test_latest_disclosures.csv',index=False, encoding='utf8')
